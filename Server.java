@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class Server {
+public class Server implements Runnable {
 
 	/**
 	 * @param args
@@ -9,6 +9,7 @@ public class Server {
 	private Socket          socket   = null;
 	private ServerSocket    server   = null;
 	private DataInputStream streamIn = null;
+	private Thread 		    thread   = null;
 	
 	
 	public Server(int port){
@@ -20,27 +21,7 @@ public class Server {
 			InetAddress IP=InetAddress.getLocalHost();
 			System.out.println("Server Starter" );
 			System.out.println("Listening on:" + IP.getHostAddress()+":"+port );
-			System.out.println("Waiting for Client..");
-			
-			socket = server.accept();
-			System.out.println("Client accepted: " + socket);
-			
-			open();/*call open function*/
-			
-			boolean done = false;
-			while(!done)
-			{
-				try{
-					String line = streamIn.readUTF();
-					System.out.println(line);
-		            done = line.equals(".bye");
-					}
-				catch(IOException ioe)
-					{
-						done = true;
-					}
-			}
-			close();/*call close function*/
+			start();		
 			
 		}catch(IOException ioe)
 			{
@@ -48,6 +29,56 @@ public class Server {
 			}			
 			
 	}
+	
+	public void run()
+	{		
+		while(thread != null)
+		{
+			try
+			{
+				System.out.println("Waiting for Client..");
+				
+				socket = server.accept();
+				System.out.println("Client accepted: " + socket);
+				
+				open();/*call open function*/
+				
+				boolean done = false;
+				while(!done)
+				{
+					try
+					{
+						String line = streamIn.readUTF();
+						System.out.println(line);
+			            done = line.equals(".bye");
+					}
+				catch(IOException ioe)
+					{
+					done = true;
+					}				
+				}		
+		       close();/*call close function*/
+		  }
+		   catch(IOException ie)
+        	{ 
+				System.out.println("Acceptance Error: " + ie);  
+			}
+	    }
+	}
+	
+	/*start & stop function*/
+	public void start()
+	   {  if (thread == null)
+	      {  thread = new Thread(this); 
+	         thread.start();
+	      }
+	   }
+	   public void stop()
+	   {  if (thread != null)
+	      {  thread.interrupt(); 
+	         thread = null;
+	      }
+	   }
 	
 	/*open & close function*/
 	 public void open() throws IOException
