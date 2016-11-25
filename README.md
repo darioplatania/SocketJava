@@ -1,5 +1,7 @@
 # SocketJava
 
+### This is an example of sending files .txt via socket
+
 #SERVER STEP
 ```
 /*-------------------------------------------------------------------------------
@@ -16,7 +18,7 @@
 ```
 /*-------------------------------------------------------------------------------
 	CREATE SOCKET
-  SEND TO CLIENT
+  SEND TO SERVER
 	CHIUSURA SOCKET
 -------------------------------------------------------------------------------*/
 ```
@@ -42,4 +44,6 @@ java Server 'port_number' e.g. java Server 8080
 ```
 javac Client.java
 java Client 'address' 'port_number' e.g. java Client 127.0.0.1 8080
+
+When prompted to enter the filename 'sendfile.txt' and go to the tmp folder to see the file copy
 ```
