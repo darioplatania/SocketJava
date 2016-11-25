@@ -5,21 +5,21 @@
 #SERVER STEP
 ```
 /*-------------------------------------------------------------------------------
-	CREATE SOCKET
+  CREATE SOCKET
   BIND
   LISTEN
   ACCEPT
   RECEIVE TO CLIENT
-	CLOSE SOCKET
+  CLOSE SOCKET
 -------------------------------------------------------------------------------*/
 ```
 
 #CLIENT STEP
 ```
 /*-------------------------------------------------------------------------------
-	CREATE SOCKET
-  SEND TO SERVER
-	CHIUSURA SOCKET
+  CREATE SOCKET
+  SEND TO SERVER 
+  CHIUSURA SOCKET
 -------------------------------------------------------------------------------*/
 ```
 
