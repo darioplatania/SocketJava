@@ -40,7 +40,7 @@ javac Server.java
 java Server 'port_number' e.g. java Server 8080
 ```
 
-### Client executable => open terminal go to the project folder socket_tcp/ClientFolder and type
+### Client executable => open terminal go to the project folder and type
 ```
 javac Client.java
 java Client 'address' 'port_number' e.g. java Client 127.0.0.1 8080
