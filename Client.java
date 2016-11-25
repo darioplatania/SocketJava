@@ -14,9 +14,9 @@ public class Client
    public Client(String serverName, int serverPort)
    {
 	  System.out.println("Establishing connection. Please wait ...");
-      	try
+      	   try
 	      {
-					 socket = new Socket(serverName, serverPort);
+		 socket = new Socket(serverName, serverPort);
 	         System.out.println("Connected: " + socket);
 	         start();
 
@@ -49,34 +49,35 @@ public class Client
    /*start function*/
    public void start() throws IOException
    {
-	  scanner   = new Scanner(System.in);
+    scanner   = new Scanner(System.in);
     streamOut = new DataOutputStream(socket.getOutputStream());
    }
 
    /*stop function*/
    public void stop()
    {
-		 try
+      try
       {
-	     if (scanner   != null)  scanner.close();
-       if (streamOut != null)  streamOut.close();
-       if (socket    != null)  socket.close();
+	 if (scanner   != null)  scanner.close();
+         if (streamOut != null)  streamOut.close();
+         if (socket    != null)  socket.close();
       }
       catch(IOException ioe)
       {
-				System.out.println("Error closing ...");
+         System.out.println("Error closing ...");
       }
    }
 
-	public static void main(String[] args)
-	{
-	// TODO Auto-generated method stub
-	   {  Client client = null;
-	      if (args.length != 2)
-	         System.out.println("Usage: java Client host port");
-		    else
-		       client = new Client(args[0], Integer.parseInt(args[1]));
-		}
-	}
+  public static void main(String[] args)
+  {
+// TODO Auto-generated method stub
+     {  
+       Client client = null;
+       if (args.length != 2)
+	 System.out.println("Usage: java Client host port");
+       else
+	 client = new Client(args[0], Integer.parseInt(args[1]));
+     }
+   }
 
 }
